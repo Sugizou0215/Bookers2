@@ -1,0 +1,17 @@
+<%#本人情報%>
+<%= render 'users/user', user: @user %>
+
+<%#新規投稿%>
+<%= render 'users/newbook', book: @book %>
+
+<%#ユーザー一覧%>
+<h1>Users</h1>
+<p>image</p>
+<p>name</p>
+<% @users.each do |user| %>
+<div>
+  <p><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+  <p><%= user.name %></p>
+  <p><%= link_to "Show", user_path(user.id) %></p>
+</div>
+<% end %>

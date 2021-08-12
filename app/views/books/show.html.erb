@@ -1,10 +1,15 @@
+<%#フラッシュメッセージ%>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
 <div>
+  <h2>Book detail</h2>
   <p>title：<%= @book.title %></p>
   <p>説明：<%= @book.body %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
   <p>投稿日時：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
   <% if @book.user == current_user %>
-    <%= link_to "編集", edit_book_path(@book.id) %>
-    <%= link_to "削除", book_path(@book), method: :delete %>
+    <%= link_to "Edit", edit_book_path(@book.id) %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
   <% end %>
 </div>

@@ -1,0 +1,32 @@
+<%#本人情報%>
+<%= render 'users/user', user: @user %>
+
+<%#新規投稿%>
+<%= render 'users/newbook', book: @book %>
+
+<%#投稿一覧%>
+<div class="col-md-8 offset-md-1">
+	<h2>Books</h2>
+	<table>
+		<thead>
+			<tr>
+      	<th>Title</th>
+      	<th>Opinion</th>
+      	<th colspan="3"></th>
+    	</tr>
+		</thead>
+		<tbody>
+			<% @books.each do |book| %>
+			<div>
+				<tr>
+					<td>
+				    <%= link_to book.title, book_path(book.id) %>
+				  </td>
+					<td><%= book.body %></td>
+				</tr>
+			</div>
+		</tbody>
+	</table>
+	<% end %>
+	<%= paginate @books %>
+</div>
