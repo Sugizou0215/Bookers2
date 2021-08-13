@@ -1,13 +1,26 @@
-<%#サイドバー%>
-<%= render './users/sidebar', user: @user, book: @book %>
-
-<div>
-  <h2>Book detail</h2>
-  <p>title：<%= @book.title %></p>
-  <p>説明：<%= @book.body %></p>
-  <p>投稿日時：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "Edit", edit_book_path(@book.id) %>
-    <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか?" %>
-  <% end %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <%#サイドバー%>
+    <%= render './users/sidebar', user: @user, book: @book %>
+    <%#投稿詳細%>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></br>
+              <%= link_to @user.name, user_path(@user.id) %>
+            </td>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
+            <% if @book.user == current_user %>
+            <td><%= link_to "Edit", edit_book_path(@book.id),class:"btn btn-success btn-sm" %></td>
+            <td><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか?", class:"btn btn-danger btn-sm"%></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
