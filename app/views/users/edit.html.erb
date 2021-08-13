@@ -1,4 +1,9 @@
-
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<% end %>
 
 <h2>User info</h2>
 <%= form_with model:@user, local:true do |f| %>
@@ -11,5 +16,5 @@
 
   <label>Introduction</label>
   <%= f.text_area :introduction, autofocus: true, id:"inputName" %>
-  <%= f.submit "変更を保存" %>
+  <%= f.submit "Update User" %>
 <% end %>
