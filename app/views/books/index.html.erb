@@ -1,12 +1,12 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+<% end %>
+
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <% if @book.errors.any? %>
-      <%= @book.errors.count %>件のエラーが発生しました
-      <% @book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    <% end %>
-
     <%#サイドバー%>
     <%= render './users/sidebar', user: @user, book: @book %>
 

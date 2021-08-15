@@ -70,6 +70,18 @@ html {
     padding-left: 15px;
 }
 
+.container, .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+div.field, div.actions {
+    margin-bottom: 10px;
+}
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
 }
@@ -298,6 +310,7 @@ input, button, select, optgroup, textarea {
 h2, .h2 {
     font-size: 2rem;
 }
+
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-bottom: 0.5rem;
     font-weight: 500;
