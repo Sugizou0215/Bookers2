@@ -22,6 +22,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @new_book = Book.new
     @book = Book.find(params[:id])
     user_id = Book.find(params[:id]).user_id
     @user = User.find(user_id) #投稿したユーザのidを取得

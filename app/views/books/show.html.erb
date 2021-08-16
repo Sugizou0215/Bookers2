@@ -1,7 +1,7 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <%#サイドバー%>
-    <%= render './users/sidebar', user: @user, book: @book %>
+    <%= render './users/sidebar', user: @user, book: @new_book %>
     <%#投稿詳細%>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
@@ -9,7 +9,7 @@
         <tbody>
           <tr>
             <td>
-              <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></br>
+              <%= link_to attachment_image_tag(@book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"), user_path(@user.id) %></br>
               <%= link_to @user.name, user_path(@user.id) %>
             </td>
             <td><%= @book.title %></td>
