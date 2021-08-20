@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :correct_book,only: [:edit,:update,:destroy]
+  before_action :correct_book,only: [:edit,:update,:destroy] #直打ちによるedit,update,destroyの禁止
 
   def new
     @book = Book.new
@@ -58,6 +58,7 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
 
+  #直打ちによるedit,update,destroyがされた場合の遷移先指定
   def correct_book
     @book = Book.find(params[:id])
     unless @book.user.id == current_user.id
