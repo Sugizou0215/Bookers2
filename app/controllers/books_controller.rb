@@ -30,6 +30,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     user_id = Book.find(params[:id]).user_id
     @user = User.find(user_id) #投稿したユーザのidを取得
+    @post_comment = PostComment.new
   end
 
   def edit
