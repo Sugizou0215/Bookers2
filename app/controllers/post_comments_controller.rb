@@ -6,7 +6,7 @@ class PostCommentsController < ApplicationController
     @post_comment.book_id = book.id
     if @post_comment.save
     	redirect_to book_path(book), notice: 'You have updated comment successfully.'
-    eelse
+    else
 		  render 'books/show'
 		end
   end
