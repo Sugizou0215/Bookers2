@@ -16,9 +16,9 @@
               <%= link_to @book.title, book_path %>
             </td>
             <td><%= @book.body %></td>
-            <td class="favorite-btn">
+            <td id="show-favorite-btn">
               <%#いいね機能%>
-              <div class="favorite-btn"><%= render "favorites/favorite-btn", book: @book %></div>
+              <%= render "favorites/favorite-btn", book: @book %>
             </td>
             <td>コメント数：<%= @book.post_comments.count %></td>
             <% if @book.user == current_user %>
