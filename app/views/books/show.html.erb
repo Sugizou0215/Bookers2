@@ -29,33 +29,8 @@
         </tbody>
       </table>
       <div class="comments">
-        <table class="table">
-          <tbody>
-            <% @book.post_comments.each do |post_comment| %>
-            <tr>
-              <td>
-                <%= attachment_image_tag(post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg") %><br>
-                <%= post_comment.user.name %>
-              </td>
-              <td>
-                <%= post_comment.comment %>
-              </td>
-              <td>
-                <% if post_comment.user == current_user %>
-                <div>
-                  <%= link_to "Destroy", book_post_comment_path(post_comment.book, post_comment), method: :delete, class:"btn btn-danger btn-sm" %>
-                </div>
-                <% end %>
-              </td>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
-          <%= f.text_area :comment, rows:'5', cols:'100',placeholder: "コメントをここに",class:"form-group" %>
-          <p><%= f.submit "送信" %></p>
-        <% end %>
+        <%#コメント機能%>
+        <%= render 'books/comment', book: @book,post_comment: @post_comment %>
       </div>
 
     </div>
