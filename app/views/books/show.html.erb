@@ -1,7 +1,7 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <%#サイドバー%>
-    <%= render './users/sidebar', user: @user, book: @new_book %>
+    <%= render 'users/sidebar', user: @user, book: @new_book %>
     <%#投稿詳細%>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
@@ -16,16 +16,9 @@
               <%= link_to @book.title, book_path %>
             </td>
             <td><%= @book.body %></td>
-            <td>
-              <% if @book.favorited_by?(current_user) %>
-                <%= link_to book_favorites_path(@book), method: :delete do %>
-                  ♥<%= @book.favorites.count %>
-                <% end %>
-              <% else %>
-                <%= link_to book_favorites_path(@book), method: :post do %>
-                  ♡<%= @book.favorites.count %>
-                <% end %>
-              <% end %>
+            <td class="favorite-btn">
+              <%#いいね機能%>
+              <div class="favorite-btn"><%= render "favorites/favorite-btn", book: @book %></div>
             </td>
             <td>コメント数：<%= @book.post_comments.count %></td>
             <% if @book.user == current_user %>
