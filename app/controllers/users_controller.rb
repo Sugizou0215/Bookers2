@@ -3,10 +3,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books.page(params[:page]).reverse_order
-
-    @user_books = @user.books
-    @today_book = @user_books.created_today
+    #投稿数取得
+    @today_book = @books.created_today
     @yesterday_book = @books.created_yesterday
+    @thisweek_book = @books.created_thisweek
+    @lastweek_book = @books.created_lastweek
   end
 
   def edit
