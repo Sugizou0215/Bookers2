@@ -13,6 +13,7 @@
 //= require popper
 //= require bootstrap-sprockets
 //
+//= require Chart.min
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
