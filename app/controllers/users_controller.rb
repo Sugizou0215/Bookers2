@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books.page(params[:page]).reverse_order
+
+    @user_books = @user.books
+    @today_book = @user_books.created_today
+    @yesterday_book = @books.created_yesterday
   end
 
   def edit
