@@ -22,11 +22,11 @@ class SearchsController < ApplicationController
       if method == 'perfect'
         Book.where(title: content)
       elsif method == 'forward'
-        User.where('title LIKE ?', content+'%')
+        Book.where('title LIKE ?', content+'%')
       elsif method == 'backward'
-        User.where('title LIKE ?', '%'+content)
+        Book.where('title LIKE ?', '%'+content)
       else
-        User.where('title LIKE ?', '%'+content+'%')
+        Book.where('title LIKE ?', '%'+content+'%')
       end
     end
   end
