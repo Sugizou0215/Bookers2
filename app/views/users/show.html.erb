@@ -110,7 +110,7 @@
 			    </tbody>
 			  </table>
 			  <%#グラフ メモ：表示されない。原因不明。chart.jsが読み込めてない？%>
-			  <canvas id="booksChart"></canvas>
+			  <div><canvas id="booksChart"></canvas></div>
 			    <script>
 				    var ctx = document.getElementById("booksChart");
 				    var booksChart = new Chart(ctx, {
@@ -146,6 +146,7 @@
 					    }
 				    });
 			    </script>
+
 			</div>
 		</div>
 	</div>

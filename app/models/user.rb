@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   attachment :profile_image
   has_many :favorites, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
@@ -17,6 +19,7 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   # 与フォロー関係を通じて参照→follower_idをフォローしている人
 
+  #フォローに関するアクション
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -27,6 +30,10 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+  end
+
+  def followed_by?(user)
+    relationships.find_by(followed_id: user.id).present?
   end
 
 	#バリデーション
