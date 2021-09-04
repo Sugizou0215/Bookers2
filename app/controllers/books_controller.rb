@@ -2,6 +2,7 @@ class BooksController < ApplicationController
 
   before_action :authenticate_user!
   before_action :correct_book,only: [:edit,:update,:destroy] #直打ちによるedit,update,destroyの禁止
+  impressionist :actions=> [:show]
 
   def new
     @book = Book.new
@@ -31,6 +32,7 @@ class BooksController < ApplicationController
     user_id = Book.find(params[:id]).user_id
     @user = User.find(user_id) #投稿したユーザのidを取得
     @post_comment = PostComment.new
+    impressionist(@book,nil,unique: [:session_hash.to_s])
   end
 
   def edit
