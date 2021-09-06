@@ -13,7 +13,7 @@
     <%#投稿一覧%>
     <div class ="col-md-8 offset-md-1">
       <h2>Books</h2>
-      <%= link_to '新しい順', books_path(sort_new: "true") %>
+      <%= link_to '新しい順', books_path(sort_latest: "true") %>
       |
       <%= link_to '評価の高い順', books_path(sort_value: "true") %>
       <div>
