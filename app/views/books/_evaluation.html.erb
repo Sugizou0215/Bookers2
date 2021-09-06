@@ -1,7 +1,6 @@
 <td id="book-evaluation-<%= book.id %>" data-score="<%= book.evaluation %>"></td>
 <script>
   $('#book-evaluation-<%= book.id %>').raty({
-    size     : 10,
     readOnly: true,
     score: function() {
     return $(this).attr('data-score');

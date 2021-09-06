@@ -111,44 +111,55 @@
 			      </tr>
 			    </tbody>
 			  </table>
-			  <%#グラフ メモ：表示されない。原因不明。chart.jsが読み込めてない？%>
-			  <div><canvas id="booksChart"></canvas></div>
-			    <script>
-				    var ctx = document.getElementById("booksChart");
-				    var booksChart = new Chart(ctx, {
-				      type: 'line',
-				      datasets: [
-				        {
-				          label: '投稿した本の数',
-				          data: [
-				          	1,2,3,4,5,6,7
-				          ],
-				          borderColor: "rgba(255,0,0,1)",
-				          backgroundColor: "rgba(0,0,0,0)"
-				        },
-				      ],
+			  <canvas id="booksChart"></canvas>
+			  <script>
+					var ctx = document.getElementById("booksChart").getContext('2d');
+				  var myChart = new Chart(ctx, {
+				    type: 'line',
+				    data: {
+				      labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+				      datasets: [{
+				        label: '投稿した本の数',
+				        data: [
+				        	<%= @six_days_ago_book.count %>,
+				        	<%= @five_days_ago_book.count %>,
+				        	<%= @four_days_ago_book.count %>,
+				        	<%= @three_days_ago_book.count %>,
+				        	<%= @two_days_ago_book.count %>,
+				        	<%= @yesterday_book.count %>,
+				        	<%= @today_book.count %>
+				        ],
+				        backgroundColor: 'rgba(255, 80, 120, 1.0)',
+				    		borderColor: 'rgba(0, 0, 255, 1)',
+						    fill: false
+				      }]
 				    },
-				      options: {
-				      title: {
-				        display: true,
-				        text: '7日間の投稿数の比較'
-					      },
-					      scales: {
-					        yAxes: [{
-					          ticks: {
-					            suggestedMax: 10,
-					            suggestedMin: 0,
-					            stepSize: 1,
-					            callback: function(value, index, values){
-					              return  value
-					            }
-					          }
-					        }]
-					      },
-					    }
-				    });
-			    </script>
+				    options: {                             //◆オプション
+            	responsive: true,                  //グラフ自動設定
+            	legend: {                          //凡例設定
+              	display: false                 //表示設定
+           		},
+            	title: {                           //タイトル設定
+              	display: true,                 //表示設定
+              	fontSize: 18,                  //フォントサイズ
+              	text: '7日間の投稿数の比較'                //ラベル
+            	},
+            	scales: {                          //軸設定
+              	yAxes: [{                      //y軸設定
+                 	display: true,             //表示設定
+                 	scaleLabel: {              //軸ラベル設定
+                   	display: true,
+                 	},
+	                ticks: {                      //最大値最小値設定
+	                  min: 0,                   //最小値
+	                  max: 10,
+	                },
+               	}],
+            	},
+				    },
 
+				  });
+				</script>
 			</div>
 		</div>
 	</div>

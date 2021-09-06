@@ -23,7 +23,14 @@ class BooksController < ApplicationController
   def index
     @user = current_user #ログインユーザのidを取得
     @book = Book.new
-    @books = Book.all
+    if params[:sort_new]
+      @books = Book.new
+    elsif params[:sort_value]
+      @books = Book.value
+    else
+      @books = Book.all
+    end
+
   end
 
   def show
