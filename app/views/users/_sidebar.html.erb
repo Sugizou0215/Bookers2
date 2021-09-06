@@ -53,11 +53,11 @@
     <h2 class ="mt-3">New book</h2>
     <%= form_with model: book, local:true do |f| %>
       <div class ="form-group">
-        <label for ="book_title">Title</label>
+        <%= f.label :Title %>
         <%= f.text_field :title,value: "",class:"form-control" %>
       </div>
       <div class ="form-group">
-        <label for ="book_opinion">Opinion</label>
+        <%= f.label :Opinion %>
         <%= f.text_area :body,value: "",class:"form-control" %>
       </div>
       <div id="evaluate_stars">

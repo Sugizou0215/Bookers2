@@ -60,12 +60,11 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_path
   end
-
   # ストロングパラメータ
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :evaluation)
+    params.require(:book).permit(:title, :body, :evaluation, :categoryTag_id )
   end
 
   #直打ちによるedit,update,destroyがされた場合の遷移先指定

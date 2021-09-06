@@ -3,6 +3,8 @@ class Book < ApplicationRecord
 	belongs_to :user
 	has_many :post_comments, dependent: :destroy
 	has_many :favorites, dependent: :destroy
+	belongs_to :categoryTag
+  validates :category_id, numericality: { other_than: 1 }
 
 	#投稿日取得
 	scope :created_today, -> { where(created_at: Time.zone.now.all_day) } # 今日
