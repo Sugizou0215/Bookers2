@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = @user.books.page(params[:page]).reverse_order
-    #投稿数取得
+    # 投稿数取得
     @today_book = @books.created_today
     @yesterday_book = @books.created_yesterday
     @two_days_ago_book = @books.created_two_days_ago
@@ -13,13 +13,13 @@ class UsersController < ApplicationController
     @six_days_ago_book = @books.created_six_days_ago
     @thisweek_book = @books.created_thisweek
     @lastweek_book = @books.created_lastweek
-    #チャット
-    @currentUserEntry=Entry.where(user_id: current_user.id)
-    @userEntry=Entry.where(user_id: @user.id)
+    # チャット
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
     if @user.id != current_user.id
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
-          if cu.room_id == u.room_id then
+          if cu.room_id == u.room_id
             @isRoom = true
             @roomId = cu.room_id
           end
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = current_user #ログインユーザのidを取得
+    @user = current_user # ログインユーザのidを取得
     @book = Book.new
     @users = User.all
   end

@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-	def create
+  def create
     current_user.follow(params[:user_id])
     redirect_to request.referer
   end
@@ -9,7 +9,7 @@ class RelationshipsController < ApplicationController
     redirect_to request.referer
   end
 
-	#フォロー・フォロワー一覧を表示
+  # フォロー・フォロワー一覧を表示
   def followings
     user = User.find(params[:user_id])
     @users = user.followings
@@ -18,6 +18,5 @@ class RelationshipsController < ApplicationController
   def followers
     user = User.find(params[:user_id])
     @users = user.followers
-	end
-
+   end
 end

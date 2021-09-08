@@ -1,8 +1,7 @@
 class BooksController < ApplicationController
-
   before_action :authenticate_user!
-  before_action :correct_book,only: [:edit,:update,:destroy] #直打ちによるedit,update,destroyの禁止
-  impressionist :actions=> [:show]
+  before_action :correct_book, only: [:edit, :update, :destroy] # 直打ちによるedit,update,destroyの禁止
+  impressionist :actions => [:show]
 
   def new
     @book = Book.new
@@ -21,7 +20,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @user = current_user #ログインユーザのidを取得
+    @user = current_user # ログインユーザのidを取得
     @book = Book.new
     if params[:sort_latest]
       @books = Book.latest
@@ -30,16 +29,15 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-
   end
 
   def show
     @new_book = Book.new
     @book = Book.find(params[:id])
     user_id = Book.find(params[:id]).user_id
-    @user = User.find(user_id) #投稿したユーザのidを取得
+    @user = User.find(user_id) # 投稿したユーザのidを取得
     @post_comment = PostComment.new
-    impressionist(@book,nil,unique: [:session_hash.to_s])
+    impressionist(@book, nil, unique: [:session_hash.to_s])
   end
 
   def edit
@@ -61,13 +59,14 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
   # ストロングパラメータ
+
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :evaluation, :categoryTag_id )
+    params.require(:book).permit(:title, :body, :evaluation, :categoryTag_id)
   end
 
-  #直打ちによるedit,update,destroyがされた場合の遷移先指定
+  # 直打ちによるedit,update,destroyがされた場合の遷移先指定
   def correct_book
     @book = Book.find(params[:id])
     unless @book.user.id == current_user.id

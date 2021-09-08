@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
-	def top
-		@books = Book.all
+  def top
+    @books = Book.all
   end
 
   def about
