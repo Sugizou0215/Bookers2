@@ -63,7 +63,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :evaluation, :categoryTag_id)
+    params.require(:book).permit(:title, :body, :evaluation)
   end
 
   # 直打ちによるedit,update,destroyがされた場合の遷移先指定
